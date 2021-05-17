@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-light-asphalt: hsl(0, 0%, 32%);
+    --color-dark-asphalt: hsl(0, 0%, 17%);
+    --color-white: hsl(0, 0%, 100%);
+}
+
+.container,
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    min-height: 100vh;
+
+    background: radial-gradient(hsl(0, 0%, 10%), hsl(0, 0%, 20%));
+}
+
+.road,
+.box__face {
+    position: relative;
+}
+
+
+.road {
+    width: 800px;
+    height: 160px;
+
+    background: var(--color-light-asphalt);
+
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    transform: perspective(500px) rotateX(30deg);
+}
+
+.road::before,
+.road::after,
+.road__shadow,
+.box {
+    position: absolute;
+}
+
+.road::before,
+.road::after,
+.box {
+    width: 100%;
+}
+
+.road::before,
+.road::after {
+    content: '';
+}
+
+.road::before {
+    top: 50%;
+    left: 0;
+
+    transform: translateY(-50%);
+
+    height: 10px;
+
+    background: linear-gradient(90deg, var(--color-white) 0%, var(--color-white) 70%, var(--color-light-asphalt) 70%, var(--color-light-asphalt) 100%);
+    background-size: 120px;
+
+    animation: animateRoad 1s linear infinite;
+}
+
+.road::after {
+    background: var(--color-dark-asphalt);
+
+    height: 30px;
+
+    bottom: -30px;
+
+    transform-origin: top;
+    transform: perspective(500px) rotateX(-30deg);
+}
+
+.road__shadow {
+    left: 50%;
+    bottom: -93px;
+
+    width: 94%;
+    height: 60px;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(hsla(0, 0%, 0%, 0.25), transparent);
+}
+
+.box {
+    -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, transparent, hsla(0, 0%, 0%, 0.25));
+
+    animation: animateBox 1s linear infinite;
+}
+
+.box__face {
+    width: 100px;
+    height: 100px;
+
+    background: var(--color-white);
+
+    transform-origin: bottom right;
+
+    animation: animate 1s linear infinite;
+}
+
+@keyframes animateRoad {
+    0% {
+        background-position: 0px;
+    }
+
+    100% {
+        background-position: -120px;
+    }
+}
+
+@keyframes animateBox {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100px);
+    }
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(90deg);
+    }
+}
