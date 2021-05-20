@@ -1,3 +1,3 @@
-# FrontEnd_Inspiration
+# Front End Inspiration
 
 *These projects are not mine*
